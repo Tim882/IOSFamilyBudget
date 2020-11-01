@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Accounts" representedClassName="Accounts" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sum" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Costs" representedClassName="Costs" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sum" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Incomes" representedClassName="Incomes" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sum" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Password" representedClassName="Password" syncable="YES" codeGenerationType="class">
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="use" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Costs" positionX="9" positionY="81" width="128" height="105"/>
+        <element name="Incomes" positionX="-36" positionY="9" width="128" height="105"/>
+        <element name="Accounts" positionX="27" positionY="108" width="128" height="105"/>
+        <element name="Password" positionX="45" positionY="135" width="128" height="75"/>
+    </elements>
+</model>
