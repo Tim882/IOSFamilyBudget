@@ -146,36 +146,41 @@ class AddAccountViewController: UIViewController {
     
     //MARK: - save
     @objc func save(sender: UIButton) {
-        let companents = Calendar.current.dateComponents([.year, .month, .day], from: datePicker.date)
-        var date = String(companents.day!)+"."
-        if companents.month!<10 {
-            date = date+"0"+String(companents.month!)+"."+String(companents.year!)
+        if Int(self.sumLabel.text ?? "") != nil {
+            let companents = Calendar.current.dateComponents([.year, .month, .day], from: datePicker.date)
+            var date = String(companents.day!)+"."
+            if companents.month!<10 {
+                date = date+"0"+String(companents.month!)+"."+String(companents.year!)
+            }
+            else {
+                date = date+String(companents.month!)+"."+String(companents.year!)
+            }
+            let category = self.pickerView(categoryPicker, titleForRow: categoryPicker.selectedRow(inComponent: 0), forComponent: 0)!
+            elementAdd = ArrayClass(date1: date, category1: category, sum1: sumLabel.text!, comment1: commentTextField.text)
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Accounts", in: context)
+            let newElement = NSManagedObject(entity: entity!, insertInto: context)
+            
+            newElement.setValue(elementAdd.sum, forKey: "sum")
+            newElement.setValue(elementAdd.date, forKey: "date")
+            newElement.setValue(elementAdd.comment, forKey: "comment")
+            newElement.setValue(elementAdd.category, forKey: "category")
+            
+            do {
+                try context.save()
+            } catch {
+                print("Failed saving")
+            }
+            
+            accountArray.append(newElement)
+            
+            self.navigationController?.popViewController(animated: true)
         }
         else {
-            date = date+String(companents.month!)+"."+String(companents.year!)
+            print("Введите сумму.")
         }
-        let category = self.pickerView(categoryPicker, titleForRow: categoryPicker.selectedRow(inComponent: 0), forComponent: 0)!
-        elementAdd = ArrayClass(date1: date, category1: category, sum1: sumLabel.text!, comment1: commentTextField.text)
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Accounts", in: context)
-        let newElement = NSManagedObject(entity: entity!, insertInto: context)
-        
-        newElement.setValue(elementAdd.sum, forKey: "sum")
-        newElement.setValue(elementAdd.date, forKey: "date")
-        newElement.setValue(elementAdd.comment, forKey: "comment")
-        newElement.setValue(elementAdd.category, forKey: "category")
-        
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        }
-        
-        accountArray.append(newElement)
-        
-        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - remove keyboard

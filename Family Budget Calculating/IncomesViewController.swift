@@ -61,7 +61,6 @@ class IncomesViewController: UIViewController {
     
     //MARK: - refreshTable
     func refreshTable() {
-        self.myIncomesTable.reloadData()
         myIncomesTable.isEditing = !myIncomesTable.isEditing
     }
     
@@ -191,6 +190,10 @@ extension IncomesViewController: UITableViewDataSource {
             incomeArray.remove(at: indexPath.row)
             myIncomesTable.deleteRows(at: [indexPath], with: .left)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.myIncomesTable.reloadData()
     }
 }
 

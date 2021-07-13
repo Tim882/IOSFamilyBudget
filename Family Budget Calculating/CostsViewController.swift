@@ -25,14 +25,8 @@ class CostsViewController: UIViewController {
         self.navigationController?.pushViewController(addCost, animated: true)
     }
     
-    //MARK: - refreshTable
-    func refreshTable() {
-        self.myCostsTable.reloadData()
-    }
-    
     //MARK: - reloadTable button
     @objc func reloadTable(param: UIBarButtonItem) {
-        refreshTable()
         myCostsTable.isEditing = !myCostsTable.isEditing
     }
     
@@ -77,7 +71,6 @@ class CostsViewController: UIViewController {
             costArray = result as! [NSManagedObject]
             
         } catch {
-            
             print("Failed")
         }
     }
@@ -190,6 +183,10 @@ extension CostsViewController: UITableViewDataSource {
             costArray.remove(at: indexPath.row)
             myCostsTable.deleteRows(at: [indexPath], with: .left)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.myCostsTable.reloadData()
     }
 }
 

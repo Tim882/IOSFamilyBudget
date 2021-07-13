@@ -75,7 +75,6 @@ class AccountsViewController: UIViewController {
     }
     
     func refreshTable() {
-        self.myAccountsTable.reloadData()
         myAccountsTable.isEditing = !myAccountsTable.isEditing
     }
     
@@ -183,6 +182,10 @@ extension AccountsViewController: UITableViewDataSource {
             accountArray.remove(at: indexPath.row)
             myAccountsTable.deleteRows(at: [indexPath], with: .left)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.myAccountsTable.reloadData()
     }
 }
 
